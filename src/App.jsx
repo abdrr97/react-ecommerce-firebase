@@ -25,8 +25,8 @@ const App = () => {
           <Route path='/search' component={Home} />
 
           {/* auth user */}
-          <Route path='/user/create/category' component={Home} />
-          <Route path='/user/create/product' component={Home} />
+          <Route path='/category/create' component={Home} />
+          <Route path='/product/create' component={Home} />
 
           <Route path='*'>
             <h1>Page Not Found</h1>
