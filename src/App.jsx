@@ -22,9 +22,11 @@ const App = () => {
           <Route path='/products' component={Home} />
           <Route path='/products/:id' component={Home} />
           <Route path='/checkout' component={Home} />
+          <Route path='/search' component={Home} />
+
+          {/* auth user */}
           <Route path='/user/create/category' component={Home} />
           <Route path='/user/create/product' component={Home} />
-          <Route path='/search' component={Home} />
 
           <Route path='*'>
             <h1>Page Not Found</h1>
