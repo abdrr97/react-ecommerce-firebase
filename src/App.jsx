@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 
 // pages
 import Home from './pages/Home'
+import CreateProduct from './pages/products/CreateProduct'
 // auth
 
 const App = () => {
@@ -26,7 +27,7 @@ const App = () => {
 
           {/* auth user */}
           <Route path='/category/create' component={Home} />
-          <Route path='/product/create' component={Home} />
+          <Route path='/product/create' component={CreateProduct} />
 
           <Route path='*'>
             <h1>Page Not Found</h1>

@@ -34,6 +34,11 @@ const Navbar = () => {
                   Sign Up
                 </Link>
               </li>
+              <li className='nav-item'>
+                <Link to='/product/create' className='nav-link'>
+                  + Create Product
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

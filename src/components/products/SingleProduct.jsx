@@ -1,20 +1,23 @@
 import React from 'react'
-
-const SingleProduct = () => {
+import { MdAddShoppingCart } from 'react-icons/md'
+const SingleProduct = (props) => {
+  const {
+    product: { image, name, description, price, category },
+  } = props
   return (
     <>
       <div class='card'>
-        <img
-          src='http://thewowstyle.com/wp-content/uploads/2015/01/nature-image.jpg'
-          class='card-img-top'
-          alt='...'
-        />
+        <img src={image} class='card-img-top' alt='...' />
         <div class='card-body'>
-          <h5 class='card-title'>Card title</h5>
+          <h5 class='card-title'>{name}</h5>
+          <p class='card-text'>{description} </p>
           <p class='card-text'>
-            This is a longer card with supporting text below as a natural lead-in to additional
-            content. This content is a little bit longer.
+            <small class='text-muted'>{price}$</small>
+            <small class='badge bg-secondary'>{category} </small>
           </p>
+          <button className='btn btn-sm btn-success'>
+            <MdAddShoppingCart />
+          </button>
         </div>
       </div>
     </>
