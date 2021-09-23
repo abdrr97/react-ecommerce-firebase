@@ -35,6 +35,7 @@ const DataProvider = ({ children }) => {
     onSnapshot(collection(db, products_collection), (snapshot) => {
       const _products = snapshot.docs.map((doc) => {
         return {
+          id: doc.id,
           docId: doc.id,
           ...doc.data(),
         }

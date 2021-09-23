@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Carrosel from '../components/Carrosel'
 import SingleProduct from '../components/products/SingleProduct'
+import ShoppingCart from '../components/ShoppingCard'
 import { useDataContext } from '../context/data-context'
 
 const Home = () => {
@@ -20,6 +21,8 @@ const Home = () => {
         ))}
 
         <hr />
+
+        <ShoppingCart />
 
         <h3 className='display-5'>Products</h3>
         <div class='row row-cols-1 row-cols-md-3 g-4'>

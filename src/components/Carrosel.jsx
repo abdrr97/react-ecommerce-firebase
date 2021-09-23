@@ -8,7 +8,7 @@ const Carrosel = () => {
   return (
     <>
       <div className='carousel-wrapper'>
-        <Carousel>
+        <Carousel autoPlay={true} infiniteLoop={true} interval={5000}>
           {items.map((item) => (
             <div className='carousel slide'>
               <div className='carousel-inner'>

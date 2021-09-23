@@ -1,6 +1,10 @@
 import React from 'react'
 import { MdAddShoppingCart } from 'react-icons/md'
+import { useCart } from 'react-use-cart'
+
 const SingleProduct = (props) => {
+  const { addItem } = useCart()
+
   const {
     product: { image, name, description, price, category },
   } = props
@@ -15,7 +19,7 @@ const SingleProduct = (props) => {
             <small class='text-muted'>{price}$</small>
             <small class='badge bg-secondary'>{category} </small>
           </p>
-          <button className='btn btn-sm btn-success'>
+          <button onClick={() => addItem(props.product)} className='btn btn-sm btn-success'>
             <MdAddShoppingCart />
           </button>
         </div>
