@@ -5,13 +5,16 @@ import App from './App'
 import { CartProvider } from 'react-use-cart'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { AuthProvider } from './context/auth-context'
 
 const root = document.getElementById('root')
 ReactDOM.render(
-  <DataProvider>
-    <CartProvider>
-      <App />
-    </CartProvider>
-  </DataProvider>,
+  <AuthProvider>
+    <DataProvider>
+      <CartProvider>
+        <App />
+      </CartProvider>
+    </DataProvider>
+  </AuthProvider>,
   root
 )

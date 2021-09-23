@@ -83,14 +83,14 @@ const DataProvider = ({ children }) => {
   const getCategory = (_id) => {}
 
   useEffect(() => {
-    const _products = getProducts()
-    const _categories = getCategories()
+    getProducts()
+    getCategories()
 
     // clean up function
-    return () => {
-      _categories()
-      _products()
-    }
+    // return () => {
+    //   _categories()
+    //   _products()
+    // }
   }, [])
 
   const values = {
