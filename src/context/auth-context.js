@@ -75,12 +75,12 @@ const AuthProvider = ({ children }) => {
     signup, // register
     signin, // login
     signout, // logout
-    authUser, // authenticated user (current user)
+    authUser,
     error,
     loading, // error
   }
 
-  return <AuthContext.Provider value={values} children={children} />
+  return <AuthContext.Provider value={values} children={!loading && children} />
 }
 
 export { AuthContext, AuthProvider }

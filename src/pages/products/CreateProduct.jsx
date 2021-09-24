@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useDataContext } from '../../context/data-context'
+import { useAuth } from '../../hooks/use-auth'
 
 const CreateProduct = () => {
   const [name, setName] = useState('')
@@ -7,34 +8,22 @@ const CreateProduct = () => {
   const [price, setPrice] = useState(0.0)
   const [quantity, setQuantity] = useState(0)
   const [stock, setStock] = useState(true)
-  const [image, setImage] = useState('')
+  const [image, setImage] = useState(null)
   const [category, setCategory] = useState('')
-  const [userName, setUserName] = useState('Abderrahmane')
-  const { addProduct, categories } = useDataContext()
-
-  const randomColor = () => {
-    let color = ''
-    for (let i = 0; i < 6; i++) {
-      const random = Math.random()
-      const bit = (random * 16) | 0
-      color += bit.toString(16)
-    }
-    return color
-  }
-
+  const { addProduct, categories, uploadProgress } = useDataContext()
+  const { authUser } = useAuth()
   const submitHandler = (e) => {
     e.preventDefault()
 
-    const randHex = randomColor()
     const product = {
       name,
       description,
       price,
       quantity,
       stock,
-      image: `https://via.placeholder.com/300.png/${randHex}/fff`,
+      image,
       category,
-      userName,
+      userEmail: authUser.email,
     }
 
     addProduct(product)
@@ -44,7 +33,21 @@ const CreateProduct = () => {
     <>
       <main className='container'>
         <h1 className='display-3'>Create Product</h1>
-
+        {uploadProgress > 0 && uploadProgress !== 100 && (
+          <>
+            <h3 className='display-6'>Creating ....</h3>
+            <div className='mb-2 progress'>
+              <div
+                className='progress-bar'
+                role='progressbar'
+                style={{ width: `${uploadProgress}%` }}
+                aria-valuenow={uploadProgress}
+                aria-valuemin='0'
+                aria-valuemax='100'
+              />
+            </div>
+          </>
+        )}
         <form onSubmit={(e) => submitHandler(e)}>
           <label>Name</label>
           <input
@@ -82,10 +85,9 @@ const CreateProduct = () => {
           />
           <label>Product Image</label>
           <input
-            value={image}
-            onChange={(e) => setImage(e.target.value)}
+            onChange={(e) => setImage(e.target.files[0])}
             className='form-control mb-3'
-            type='url'
+            type='file'
           />
           <label>Category</label>
 

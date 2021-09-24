@@ -1,6 +1,7 @@
 import React, { useState, useEffect, createContext, useContext } from 'react'
-import { db } from '../.firebase'
+import { db, storage } from '../.firebase'
 import { addDoc, deleteDoc, collection, onSnapshot, serverTimestamp, doc } from 'firebase/firestore'
+import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage'
 
 const products_collection = 'products'
 const categories_collection = 'categories'
@@ -11,16 +12,31 @@ const DataProvider = ({ children }) => {
   const [loading, setLoading] = useState(true)
   const [products, setProducts] = useState([])
   const [categories, setCategories] = useState([])
+  const [uploadProgress, setUploadProgress] = useState(0)
 
   //   CRUD Products
   const addProduct = async (_product) => {
     if (!_product) return
-
     setLoading(true)
-    await addDoc(collection(db, products_collection), {
-      ..._product,
-      created_at: serverTimestamp(),
-    })
+
+    const storageRef = ref(storage, `/products/${_product.name}`)
+    const uploadTask = uploadBytesResumable(storageRef, _product.image)
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        setUploadProgress(progress)
+      },
+      (error) => {},
+      async () => {
+        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
+        await addDoc(collection(db, products_collection), {
+          ..._product,
+          image: downloadURL,
+          created_at: serverTimestamp(),
+        })
+      }
+    )
     setLoading(false)
   }
   const deleteProduct = async (_id) => {
@@ -102,6 +118,7 @@ const DataProvider = ({ children }) => {
     loading,
     products,
     categories,
+    uploadProgress,
   }
   return <DataContext.Provider value={values} children={children} />
 }
