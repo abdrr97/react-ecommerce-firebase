@@ -8,15 +8,17 @@ app.use(express.json())
 
 app.options('*', cors())
 app.post('/create-payment-intent', cors(), async (req, res) => {
-  const { cartTotal } = req.body // request data sent
-  const paymentIntent = await stripe.paymentIntents.create({
-    amount: cartTotal * 100,
-    currency: 'usd',
-  })
+  try {
+    const { cartTotal } = req.body // request data sent
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: cartTotal * 100,
+      currency: 'usd',
+    })
 
-  res.send({
-    clientSecret: paymentIntent.client_secret,
-  })
+    res.send({
+      clientSecret: paymentIntent.client_secret,
+    })
+  } catch (ex) {}
 })
 
 app.listen(4242, () => console.log('nodejs server listen to => http://localhost:4242'))

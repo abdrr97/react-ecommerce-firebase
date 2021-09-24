@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Carrosel from '../components/Carrosel'
 import SingleProduct from '../components/products/SingleProduct'
-import ShoppingCart from '../components/ShoppingCard'
 import { useDataContext } from '../context/data-context'
 
 const Home = () => {
@@ -15,14 +14,14 @@ const Home = () => {
         <h3 className='display-6'>Categories</h3>
 
         {categories.map(({ docId, name }, idx) => (
-          <Link to={`/categories/${docId}`} key={idx} className='badge bg-success mx-1'>
+          <Link to={`/categories/${name}`} key={idx} className='badge bg-success mx-1'>
             {name}
           </Link>
         ))}
 
         <hr />
         <h3 className='display-5'>Products</h3>
-        <div class='row row-cols-1 row-cols-md-3 g-4'>
+        <div class='row '>
           {products.length > 0 ? (
             products.map((product, idx) => {
               return (

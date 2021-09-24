@@ -10,7 +10,7 @@ const SingleProduct = (props) => {
   } = props
   return (
     <>
-      <div class='card'>
+      <div style={{ width: '300px' }} class='card'>
         <img src={image} class='card-img-top' alt='...' />
         <div class='card-body'>
           <h5 class='card-title'>{name}</h5>

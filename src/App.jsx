@@ -11,6 +11,7 @@ import Login from './pages/auth/Login'
 import { SignUp } from './pages/auth'
 import CartPage from './pages/CartPage'
 import CheckoutPage from './pages/CheckoutPage'
+import CategoryProducts from './pages/CategoryProducts'
 
 const App = () => {
   return (
@@ -33,7 +34,7 @@ const App = () => {
             <Route path='/search' component={Home} />
 
             {/* auth user */}
-            <PrivateRoute path='/category/create' component={Home} />
+            <Route exact path='/categories/:id' component={CategoryProducts} />
             <PrivateRoute path='/product/create' component={CreateProduct} />
 
             <Route path='*'>
