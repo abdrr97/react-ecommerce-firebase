@@ -50,6 +50,9 @@ const ShoppingCart = () => {
           </li>
         ))}
       </ul>
+      <Link to='/checkout' className='btn btn-success'>
+        Checkout
+      </Link>
       <button
         onClick={() => {
           if (window.confirm('Do you really want to empty your cart ?')) emptyCart()
