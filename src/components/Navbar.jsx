@@ -4,13 +4,14 @@ import { BsSearch } from 'react-icons/bs'
 import { FaShoppingCart } from 'react-icons/fa'
 import { useAuth } from '../hooks/use-auth'
 import Logout from './Logout'
+import { useCart } from 'react-use-cart'
 
 const Navbar = () => {
   const { authUser } = useAuth()
-
+  const { totalUniqueItems } = useCart()
   return (
     <>
-      <nav className='navbar navbar-light bg-light'>
+      <nav className='fixed-top navbar navbar-light bg-light'>
         <div className='container-fluid'>
           <Link to='/' className='navbar-brand'>
             React E-commerce
@@ -19,7 +20,8 @@ const Navbar = () => {
           <div className='navbar navbar-expand'>
             <ul className='navbar-nav'>
               <li className='nav-item'>
-                <Link to='/checkout' className='btn nav-link'>
+                <Link to='/cart' className='btn nav-link'>
+                  <span className='badge bg-info'>{totalUniqueItems}</span>
                   <FaShoppingCart />
                 </Link>
               </li>

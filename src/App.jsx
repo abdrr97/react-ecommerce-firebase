@@ -9,33 +9,37 @@ import CreateProduct from './pages/products/CreateProduct'
 // auth
 import Login from './pages/auth/Login'
 import { SignUp } from './pages/auth'
+import CartPage from './pages/CartPage'
 
 const App = () => {
   return (
     <>
       <Router>
         <Navbar />
-        <Switch>
-          <Route exact path='/' component={Home} />
-          {/* auth */}
-          <Route path='/login' component={Login} />
-          <Route path='/signup' component={SignUp} />
-          <Route path='/forgot-password' component={Home} />
+        <main style={{ marginTop: '100px' }}>
+          <Switch>
+            <Route exact path='/' component={Home} />
+            {/* auth */}
+            <Route path='/login' component={Login} />
+            <Route path='/signup' component={SignUp} />
+            <Route path='/forgot-password' component={Home} />
 
-          {/* Produits */}
-          <Route path='/products' component={Home} />
-          <Route path='/products/:id' component={Home} />
-          <Route path='/checkout' component={Home} />
-          <Route path='/search' component={Home} />
+            {/* Produits */}
+            <Route path='/products' component={Home} />
+            <Route path='/products/:id' component={Home} />
+            <Route path='/checkout' component={Home} />
+            <Route path='/cart' component={CartPage} />
+            <Route path='/search' component={Home} />
 
-          {/* auth user */}
-          <PrivateRoute path='/category/create' component={Home} />
-          <PrivateRoute path='/product/create' component={CreateProduct} />
+            {/* auth user */}
+            <PrivateRoute path='/category/create' component={Home} />
+            <PrivateRoute path='/product/create' component={CreateProduct} />
 
-          <Route path='*'>
-            <h1>Page Not Found</h1>
-          </Route>
-        </Switch>
+            <Route path='*'>
+              <h1>Page Not Found</h1>
+            </Route>
+          </Switch>
+        </main>
       </Router>
     </>
   )

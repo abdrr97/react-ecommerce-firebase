@@ -1,15 +1,26 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { useCart } from 'react-use-cart'
 
 const ShoppingCart = () => {
-  const { isEmpty, totalUniqueItems, items, updateItemQuantity, removeItem, cartTotal } = useCart()
+  const { emptyCart, isEmpty, totalUniqueItems, items, updateItemQuantity, removeItem, cartTotal } =
+    useCart()
 
-  if (isEmpty) return <p>Your cart is empty</p>
+  if (isEmpty)
+    return (
+      <>
+        <section className='text-center'>
+          <h1 className='display-3'>Your cart is empty</h1>
+          <Link className=' btn btn-info' to='/'>
+            Fill Your Cart
+          </Link>
+        </section>
+      </>
+    )
 
   return (
     <>
       <h1 className='display-5'>Cart ({totalUniqueItems})</h1>
-      <h1 className='display-5'>Total {cartTotal}$</h1>
 
       <ul className='list-group'>
         {items.map((item) => (
@@ -17,6 +28,7 @@ const ShoppingCart = () => {
             className='list-group-item d-flex align-items-center justify-content-between'
             key={item.id}
           >
+            <img width='100' src={item.image} alt={item.name} />
             {item.quantity} x {item.name} &mdash;
             <div className='btn-group'>
               <button
@@ -38,6 +50,15 @@ const ShoppingCart = () => {
           </li>
         ))}
       </ul>
+      <button
+        onClick={() => {
+          if (window.confirm('Do you really want to empty your cart ?')) emptyCart()
+        }}
+        className='btn btn-outline-danger mt-3'
+      >
+        Empty your Cart
+      </button>
+      <h1 className='display-6'>Total :{cartTotal}$</h1>
     </>
   )
 }

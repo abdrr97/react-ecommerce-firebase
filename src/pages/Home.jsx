@@ -21,9 +21,6 @@ const Home = () => {
         ))}
 
         <hr />
-
-        <ShoppingCart />
-
         <h3 className='display-5'>Products</h3>
         <div class='row row-cols-1 row-cols-md-3 g-4'>
           {products.length > 0 ? (
