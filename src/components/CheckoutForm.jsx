@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react'
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import { useCart } from 'react-use-cart'
@@ -16,7 +17,7 @@ export default function CheckoutForm() {
   const { cartTotal, isEmpty, emptyCart } = useCart()
 
   useEffect(() => {
-    const api_url = 'http://localhost:4242/create-payment-intent'
+    const api_url = `${process.env.REACT_APP_STRIPE_HOST}/create-payment-intent`
     const fetchStripePayment = async () => {
       const { data } = await axios({
         url: api_url,

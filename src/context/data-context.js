@@ -61,8 +61,6 @@ const DataProvider = ({ children }) => {
     setLoading(false)
   }
 
-  const getProduct = (_id) => {}
-
   //   CRUD Categories
   const addCategory = async (_category) => {
     if (!_category) return
@@ -95,18 +93,9 @@ const DataProvider = ({ children }) => {
     setLoading(false)
   }
 
-  //   get category and its products
-  const getCategory = (_id) => {}
-
   useEffect(() => {
     getProducts()
     getCategories()
-
-    // clean up function
-    // return () => {
-    //   _categories()
-    //   _products()
-    // }
   }, [])
 
   const values = {

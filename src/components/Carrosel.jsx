@@ -3,7 +3,7 @@ import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 
 const Carrosel = () => {
-  const [items, setItems] = useState([1, 2, 3, 4, 5, 6, 7, 8])
+  const [items] = useState([1, 2, 3, 4, 5, 6, 7, 8])
 
   return (
     <>

@@ -1,9 +1,9 @@
 # react-ecommerce-firebase
 
-- [ x ] upload image
+- [x] upload image
+- [x] add user name for auth user
 - [ ] create collection for carosel
-  - [ ] create collection for carosel
-- [ ] add user name for auth user
+  - [ ] carosel upload image form
 - [ ] search
 - [ ] footer
 - [ ] product details

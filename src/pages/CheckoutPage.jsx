@@ -2,7 +2,7 @@ import React from 'react'
 import CheckoutForm from '../components/CheckoutForm'
 import { loadStripe } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js'
-const promise = loadStripe('pk_test_o4s6hprVpP0CKRPVYGT4ns9800VoJwXG4o')
+const promise = loadStripe(process.env.REACT_APP_STRIPE_PK)
 
 const CheckoutPage = () => {
   return (
